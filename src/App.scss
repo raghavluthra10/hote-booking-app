@@ -9,6 +9,13 @@ $minWidth: 750px;
 
 $cursor: pointer;
 
+* {
+    a {
+        color: $secondaryFontColor;
+        text-decoration: none;
+    }
+}
+
 // Auth => login and signup
 .auth {
   height: 100vh;
