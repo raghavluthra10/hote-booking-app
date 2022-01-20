@@ -64,7 +64,7 @@ const Navbar:FC = () => {
                 </Typography>
 
                 <Typography  className={classes.title}>
-                    <Link to='/list'>
+                    <Link to='/lists'>
                         List
                     </Link>
                 </Typography>
