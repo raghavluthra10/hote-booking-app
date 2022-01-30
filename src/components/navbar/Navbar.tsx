@@ -69,6 +69,12 @@ const Navbar:FC = () => {
                     </Link>
                 </Typography>
 
+                <Typography  className={classes.title}>
+                    <Link to='/demo'>
+                        Demo
+                    </Link>
+                </Typography>
+
 
             </div>
 

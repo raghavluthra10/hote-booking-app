@@ -1,11 +1,20 @@
 import React, { FC } from 'react';
+import { useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
 import ListBox from '../../components/listBox/ListBox';
 
 
 const List: FC<{}> = () => {
+
+    let { path, url } = useRouteMatch();
+
+
     return (
         <ListContainer>
+            <ListBox />
+
+            <ListBox />
+
             <ListBox />
         </ListContainer>
     );

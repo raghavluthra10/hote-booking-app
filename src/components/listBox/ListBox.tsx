@@ -5,24 +5,15 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { black } from 'material-ui/styles/colors';
 import ButtonComp from '../button/ButtonComp';
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    listBoxContainer: {
-
-    },
-  }),
-);
 
 const ListBox:FC = () => {
-
-    const classes = useStyles();
 
     const checkoutHotel = () => {
         console.log('checkout');
     }
 
     return (
-        <ListBoxContainer className={classes.listBoxContainer} >
+        <ListBoxContainer >
 
             <ImageView             />
 
@@ -41,7 +32,7 @@ const ListBox:FC = () => {
                     ersions of Lorem Ipsum.
                 </section>
 
-                <ButtonComp onClick={checkoutHotel} >
+                <ButtonComp onClick={checkoutHotel} color="red" >
                     Checkout
                 </ButtonComp>
             </ListInfo>
@@ -53,9 +44,19 @@ const ListBox:FC = () => {
 export default ListBox;
 
 const ListBoxContainer = styled.div`
-    border: 1px solid black;
+    border-radius: 10px;
     padding: 20px;
     display: flex;
+    margin-bottom: 50px;
+    box-shadow:  4px 4px 20px rgba(121, 119, 119, 0.7);
+
+    &:hover {
+        box-shadow:  2px 2px 20px rgba(121, 119, 119, 0.7);
+        cursor: pointer;
+        transform: scale(1.02);
+        transition: 0.3s;
+    }
+
 `;
 
 const ImageView = styled.img`

@@ -14,6 +14,7 @@ import SignUp from './pages/signUp/SignUp';
 import logging from './config/logging';
 import routes from './config/routes';
 import PrivateRoute from './config/PrivateRoute';
+import Demo from './pages/demo/demo';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
         <Route path='/login' exact > <Login /> </Route>
         <Route path='/lists' exact ><List  /></Route>
         <Route path='/signUp' exact ><SignUp  /></Route> 
+        <Route path='/demo' exact ><Demo  /></Route> 
 
 
         <PrivateRoute  
