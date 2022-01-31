@@ -1,12 +1,24 @@
-import { Box } from '@material-ui/core';
+import { Box, IconButton, } from '@material-ui/core';
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { black } from 'material-ui/styles/colors';
 import ButtonComp from '../button/ButtonComp';
+import  EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { useRouteMatch } from 'react-router-dom';
 
+interface Props {
+    name: string;
+    image?: string;
+    sqft: number;
+    price: number;
+    onClick: (e: any) => any;
+};
 
-const ListBox:FC = () => {
+const ListBox:FC<Props> = ({ name, image, sqft, price, onClick }) => {
+
+    let { path, url } = useRouteMatch();    
 
     const checkoutHotel = () => {
         console.log('checkout');
@@ -19,21 +31,25 @@ const ListBox:FC = () => {
 
             <ListInfo>
                 <h3>
-                    ABC Hotel Ownwer Private Limited
+                    {name}
                 </h3>
+                    
+                <InfoSection>
+                    <article>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has 
+                        been the industry's standard dummy text ever since the 1500s, when an unknown printer took 
+                        a galley of type and scrambled it to make a type specimen book.
+                    </article>
 
-                <section>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has 
-                    been the industry's standard dummy text ever since the 1500s, when an unknown printer took 
-                    a galley of type and scrambled it to make a type specimen book. It has survived not only five 
-                    centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                    It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum 
-                    passages, and more recently with desktop publishing software like Aldus PageMaker including v
-                    ersions of Lorem Ipsum.
-                </section>
+                    <div>
+                        <div>Sqft: {sqft}</div>
 
-                <ButtonComp onClick={checkoutHotel} color="red" >
-                    Checkout
+                        <div>Rs: {price}</div>
+                    </div>
+                </InfoSection>
+
+                <ButtonComp onClick={onClick} color="red" >
+                    Have a look
                 </ButtonComp>
             </ListInfo>
 
@@ -49,6 +65,11 @@ const ListBoxContainer = styled.div`
     display: flex;
     margin-bottom: 50px;
     box-shadow:  4px 4px 20px rgba(121, 119, 119, 0.7);
+
+    /* .ListInfo_top {
+        display: flex;
+        justify-content: space-between;
+    } */
 
     &:hover {
         box-shadow:  2px 2px 20px rgba(121, 119, 119, 0.7);
@@ -73,4 +94,9 @@ const ListInfo = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+`;
+
+const InfoSection = styled.section`
+    display: flex;
+    flex-direction: column;
 `;

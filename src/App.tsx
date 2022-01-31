@@ -15,6 +15,7 @@ import logging from './config/logging';
 import routes from './config/routes';
 import PrivateRoute from './config/PrivateRoute';
 import Demo from './pages/demo/demo';
+import ListFullPage from './pages/listFullPage/ListFullPage'
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
         <Route path='/lists' exact ><List  /></Route>
         <Route path='/signUp' exact ><SignUp  /></Route> 
         <Route path='/demo' exact ><Demo  /></Route> 
+        <Route path='/page-detail' exact ><ListFullPage  /></Route> 
 
 
         <PrivateRoute  

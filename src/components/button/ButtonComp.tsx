@@ -4,32 +4,29 @@ import { grey, red } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 
 
-
-const useStyles = makeStyles((theme: Theme) =>
-createStyles({
-  margin: {
-    margin: theme.spacing(1),
-  },
-}),
-);
-
 interface Props {
   children: string;
   variant?: any;
   color?: any;
+  width?: any;
   onClick: (e: any) => any;
 }
 
-const ButtonComp:FC<Props> = ({ children, onClick, color }) => {
+const ButtonComp:FC<Props> = ({ children, onClick, color, width }) => {
 
-  const classes = useStyles();
 
   const [ buttonColor, setButtonColor ] = useState<any>(grey);
+  const [ buttonWidth, setButtonWidth ] = useState<any>('');
   
   useEffect(() => {
     if (color === 'red') {
       setButtonColor(red);
     }
+
+    if(width !== '') {
+      setButtonWidth(width);
+    }
+
   }, []);
 
 
@@ -49,7 +46,7 @@ const ButtonComp:FC<Props> = ({ children, onClick, color }) => {
     return (
         <>
             <ColorButton 
-              className={classes.margin}
+              style={{ width: buttonWidth }}
               onClick={onClick}
               >
               {children}
