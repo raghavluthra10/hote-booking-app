@@ -12,11 +12,14 @@ import { Link, useHistory } from 'react-router-dom';
 const useStyles = makeStyles((theme) =>
   createStyles({
     appBar: {
-      backgroundColor: 'black'
+      backgroundColor: 'black',
+      width: '100vw'
     },
     root: {
         flexGrow: 1,
-        backgroundColor: theme.palette.secondary.main
+        backgroundColor: theme.palette.secondary.main,
+        position: 'fixed',
+        zIndex: 100
 
     },
     toolbar: {

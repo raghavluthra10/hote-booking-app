@@ -6,19 +6,17 @@ import { black } from 'material-ui/styles/colors';
 import ButtonComp from '../button/ButtonComp';
 import  EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { useRouteMatch } from 'react-router-dom';
 
 interface Props {
     name: string;
     image?: string;
-    sqft: number;
+    bhk: number;
     price: number;
     onClick: (e: any) => any;
 };
 
-const ListBox:FC<Props> = ({ name, image, sqft, price, onClick }) => {
+const ListBox:FC<Props> = ({ name, image, bhk, price, onClick }) => {
 
-    let { path, url } = useRouteMatch();    
 
     const checkoutHotel = () => {
         console.log('checkout');
@@ -42,9 +40,9 @@ const ListBox:FC<Props> = ({ name, image, sqft, price, onClick }) => {
                     </article>
 
                     <div>
-                        <div>Sqft: {sqft}</div>
+                        <div>Bhk: {bhk}</div>
 
-                        <div>Rs: {price}</div>
+                        <div>Rs: {price} / night</div>
                     </div>
                 </InfoSection>
 
@@ -99,4 +97,11 @@ const ListInfo = styled.div`
 const InfoSection = styled.section`
     display: flex;
     flex-direction: column;
+
+    div {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        font-weight: 600; 
+    }
 `;

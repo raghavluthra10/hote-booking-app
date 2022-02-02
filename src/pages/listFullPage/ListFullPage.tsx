@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useRouteMatch } from 'react-router-dom';
 
 const ListFullPage = () => {
 
-    let { path, url } = useRouteMatch();
 
 
     return (
@@ -14,16 +12,22 @@ const ListFullPage = () => {
                 Image
             </ImageSection>
 
+            {/* edit button => when clicked gives admin permission to make changes to the app */}
+
             <InfoSection>
                 Info
 
             </InfoSection>
             {/*  Info section => where all the information for the hotel will come  */}
 
-            {/*  CTA => where the button for booking a hotel will come  */}
             <Cta>
+            {/*  CTA => this will be flaoting at the right side like in airbnb hotel list page  */}
                 CTA
             </Cta>
+
+            <DatePicker>
+                {/* this will have the date picker to check availibily */}
+            </DatePicker>
 
         </Container>
     );
@@ -45,5 +49,9 @@ const InfoSection = styled.div`
 `;
 
 const Cta = styled.div`
+
+`;
+
+const DatePicker = styled.div`
 
 `;

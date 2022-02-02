@@ -9,10 +9,11 @@ interface Props {
   variant?: any;
   color?: any;
   width?: any;
+  type?: any;
   onClick: (e: any) => any;
 }
 
-const ButtonComp:FC<Props> = ({ children, onClick, color, width }) => {
+const ButtonComp:FC<Props> = ({ children, onClick, color, width, type }) => {
 
 
   const [ buttonColor, setButtonColor ] = useState<any>(grey);

@@ -1,20 +1,23 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
 import ListBox from '../../components/listBox/ListBox';
 import ButtonComp from '../../components/button/ButtonComp';
 import { useHistory } from "react-router-dom";
+import ModalOne from '../../components/newListModel/ModalOne';
 
 
-const arr: { id: number; name: string; sqft: number; price: number }[] = [
-    { id: 1, name: 'Raghav', sqft: 111, price: 111 },
-    { id: 2, name: 'Muskaan',  sqft: 111, price: 111 },
-    { id: 3, name: 'Allu',  sqft: 111, price: 111 },
+const arr: { id: number; name: string; bhk: number; price: number }[] = [
+    { id: 1, name: 'Raghav', bhk: 111, price: 111 },
+    { id: 2, name: 'Muskaan',  bhk: 111, price: 111 },
+    { id: 3, name: 'Allu',  bhk: 111, price: 111 },
 ]
 
 const List: FC<{}> = () => {
 
     const history = useHistory();
+
+    const [ openAddHotelModal, setOpenAddHotelModal ] = useState<any>(false);
 
     let { path, url } = useRouteMatch();
 
@@ -22,41 +25,46 @@ const List: FC<{}> = () => {
         history.push(`${url}/${list.id}-${list.name}`)
     };
 
-    const addNewHotel = (e: any) => {
-        console.log('add new hotel');
-    };  
+
 
     return (
-        <ListContainer>
+        <>
+            {openAddHotelModal && <ModalOne 
+                openAddHotelModal={openAddHotelModal} 
+                closeModal={(e:any) => setOpenAddHotelModal(false)} 
+                />
+            }
 
-            <InfoSection>
-                <div className="infoSection_adminInfo" >
-                    <div>
-                        Name: Raghav Luthra
+            <ListContainer>
+
+                <InfoSection>
+                    <div className="infoSection_adminInfo" >
+                        <div>
+                            My name: Raghav Luthra
+                        </div>
+
+                        <div>
+                            Number of hotels listed: 11
+                        </div>
                     </div>
 
-                    <div>
-                        Number of hotels listed: 11
-                    </div>
-                </div>
+                    <ButtonComp onClick={(e: any ) => setOpenAddHotelModal(true)} width="200px" > 
+                        Add a new hotel
+                    </ButtonComp>
+                </InfoSection>
 
-                <ButtonComp onClick={addNewHotel} width="200px" > 
-                    Add a new hotel
-                </ButtonComp>
-            </InfoSection>
+                {arr.map((list) => {
+                    return <ListBox 
+                        price={list.price}
+                        bhk={list.bhk}
+                        name={list.name}
+                        key={list.id}
+                        onClick={(e) => showFullPage(e, list)}
+                    />
+                })}
 
-            {arr.map((list) => {
-                return <ListBox 
-                    price={list.price}
-                    sqft={list.sqft}
-                    name={list.name}
-                    key={list.id}
-                    onClick={(e) => showFullPage(e, list)}
-            />
-
-            })}
-
-        </ListContainer>
+            </ListContainer>
+        </>
     );
 };
 
@@ -73,6 +81,7 @@ const InfoSection = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
     margin-bottom: 50px;
 
     .infoSection_adminInfo {
