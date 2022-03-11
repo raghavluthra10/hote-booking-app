@@ -9,15 +9,16 @@ interface Props {
   variant?: any;
   color?: any;
   width?: any;
-  type?: any;
+  // type?: any;
   onClick: (e: any) => any;
 }
 
-const ButtonComp:FC<Props> = ({ children, onClick, color, width, type }) => {
+const ButtonComp:FC<Props> = ({ children, onClick, color, width }) => {
 
 
   const [ buttonColor, setButtonColor ] = useState<any>(grey);
   const [ buttonWidth, setButtonWidth ] = useState<any>('');
+  // const [ buttonType, setButtonType ] = useState<any>('button')
   
   useEffect(() => {
     if (color === 'red') {
@@ -27,6 +28,10 @@ const ButtonComp:FC<Props> = ({ children, onClick, color, width, type }) => {
     if(width !== '') {
       setButtonWidth(width);
     }
+
+    // if(type !== 'upload') {
+    //   setButtonType(type);
+    // }
 
   }, []);
 

@@ -1,0 +1,11 @@
+Goals
+
+SETUP REDUX STATE
+    1. setup store.ts
+    2. create <Provider> in app.tsx
+    3. create hotelList.ts in slices (will contain reducers and action)
+
+ADD MULTIPLE MODALS FOR CREATION OF NEW LIST
+
+FULL PAGE OF LIST
+

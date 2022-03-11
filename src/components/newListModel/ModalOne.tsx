@@ -1,29 +1,33 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import styled from 'styled-components';
 import { TextField, Paper, Grid, Box, createStyles, makeStyles } from '@material-ui/core';
 import ButtonComp from '../button/ButtonComp';
+import ModalTwo from './ModalTwo';
+import { ModalOneProps, ModalOneForm } from '../../interfaces/props'
 
 
-interface Props {
-    openAddHotelModal: any;
-    closeModal: any;
-}
-
-const ModalOne:FC<Props> = ({ openAddHotelModal, closeModal,  }) => {
+const ModalOne:FC<ModalOneProps> = ({ openAddHotelModal, closeModal,  }) => {
 
     useEffect(() => {
         console.log('MODAL ONE => ', openAddHotelModal);
     }, []);
 
-    const goAhead = (): any => {
-        console.log('go ahead');
-    };
+    const [ form, setForm ] = useState<ModalOneForm>({
+        name: '',
+        location: '',
+        price: 0,
+        bhk: 0,
+        description: ''
+    });
 
-    const uploadFile = (e: any) => {
-        console.log('upload file');
-    };
+    const [ openModalTwo, setOpenModalTwo ] = useState<boolean>(false);
+
+    const checkRedux = () => {
+        console.log('form =>', form)
+    }
+
 
     return (
         <>
@@ -36,58 +40,58 @@ const ModalOne:FC<Props> = ({ openAddHotelModal, closeModal,  }) => {
                 </div>
 
                 <div className="modalMain__Center" >
-                    <h5 className="center_top">
+                    <h2>
+                        Hotel Information
+                    </h2>
+                    
+                    <br/>
+
+                    <h4 className="center_top">
                         Please add in the following details to list a new hotel:
-                    </h5>
+                    </h4>
                     <form  >
                         <TextField 
-                            // className={classes.inputField}
                             id="standard-basic" 
                             label="Name" 
-                            // value={loginForm.email}
-                            // onChange={e => setLoginForm({...loginForm, email: e.target.value})}
+                            value={form.name}
+                            onChange={e => setForm({...form, name: e.target.value})}
                         />
 
                         <TextField 
-                            // className={classes.inputField}
                             id="standard-basic" 
                             label="Location" 
-                            // value={loginForm.email}
-                            // onChange={e => setLoginForm({...loginForm, email: e.target.value})}
+                            value={form.location}
+                            onChange={e => setForm({...form, location: e.target.value})}
                         />
 
                         <div className="center__pricing">
                             <TextField 
-                                // className={classes.inputField}
                                 id="standard-basic" 
-                                label="price per night" 
-                                // value={loginForm.email}
-                                // onChange={e => setLoginForm({...loginForm, email: e.target.value})}
+                                label="price / night" 
+                                type='number'
+                                value={form.price}
+                                onChange={e => setForm({...form, price: e.target.value})}
                             />
                             <TextField 
-                                // className={classes.inputField}
                                 id="standard-basic" 
                                 label="Bhk" 
-                                // value={loginForm.email}
-                                // onChange={e => setLoginForm({...loginForm, email: e.target.value})}
+                                type='number'
+                                value={form.bhk}
+                                className="center__pricing__two"
+                                onChange={e => setForm({...form, bhk: e.target.value})}
                             />
 
                         </div>
 
                         <TextField 
-                                // className={classes.inputField}
-                                id="standard-basic" 
-                                label="Description"
-                                multiline 
-                                // value={loginForm.email}
-                                // onChange={e => setLoginForm({...loginForm, email: e.target.value})}
-                                />
+                            id="standard-basic" 
+                            label="Description"
+                            multiline 
+                            rows={4}
+                            value={form.description}
+                            onChange={e => setForm({...form, description: e.target.value})}
+                            />
 
-                        {/* input image */}
-
-                        <ButtonComp onClick={uploadFile} width="100px" >
-                            Upload
-                        </ButtonComp>
                     </form>
 
                 </div>
@@ -95,7 +99,8 @@ const ModalOne:FC<Props> = ({ openAddHotelModal, closeModal,  }) => {
                 <div className="modalMain__bottom" >
 
 
-                    <ButtonComp onClick={goAhead} >Add</ButtonComp>
+                    {/* <ButtonComp onClick={(e: any) => setOpenModalTwo(true)} >Next</ButtonComp> */}
+                    <ButtonComp onClick={checkRedux} >Next</ButtonComp>
                 </div>
             </ModalMain>
         </Container>
@@ -123,13 +128,12 @@ const Container = styled.div`
     position: fixed;
     width: 100%;
     height: 100vh;
-    margin-top: 60px;
     z-index: 99;
 `;
 
 const ModalMain = styled.div`
     width: 600px;
-    padding: 15px 0;
+    padding: 20px 0;
     border-radius: 10px;
     background-color: white;
     display: flex;
@@ -139,7 +143,7 @@ const ModalMain = styled.div`
         display: flex;
         justify-content: flex-end;
         margin-bottom: 20px;
-        border-bottom: 2px solid #bebcbc;
+        border-bottom: 1px solid #bebcbc;
         padding: 0 30px;
     }
 
@@ -147,14 +151,24 @@ const ModalMain = styled.div`
         display: flex;
         flex-direction: column;
         margin: 20px 0;
-        border-bottom: 2px solid #bebcbc;
         padding: 0 30px;        
 
         form {
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            height: 300px;
 
             .center__pricing {
+                display: flex;
+
+
+                .center__pricing__two {
+                    margin-left: 100px;
+                }
+            }
+
+            .center__fileUpload {
                 display: flex;
             }
         }
@@ -162,8 +176,7 @@ const ModalMain = styled.div`
     
     .modalMain__bottom {
         display: flex;
-        /* margin-bottom: 20px; */
-        /* border-bottom: 2px solid #bebcbc; */
         padding: 0 30px;
+        justify-content: flex-end;
     }
 `;

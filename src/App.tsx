@@ -52,19 +52,3 @@ function App() {
 }
 
 export default App;
-
-
-//  {routes.map((route, index) => {
-//   return <Route
-//       key={index}
-//       path={route.path}
-//       exact={route.exact}
-//       render={(props: RouteComponentProps<any>) => (
-//         <route.component
-//         name={route.name}
-//         {...props}
-//         {...route.props}
-//         />
-//       )}
-//       />
-//  })} 
