@@ -7,10 +7,14 @@ export const updateHotel = createSlice({
       { id: 1, name: "Raghav", bhk: 111, price: 111 },
       { id: 2, name: "Muskaan", bhk: 111, price: 111 },
       { id: 3, name: "Allu", bhk: 111, price: 111 },
+      { id: 4, name: "bdjsc", bhk: 111, price: 111 },
     ],
   },
   reducers: {
-    // addHotel:
+    addHotel: (state, param) => {
+      const { payload } = param;
+      state.list = [...state.list, payload];
+    },
   },
 });
 
