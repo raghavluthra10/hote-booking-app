@@ -1,51 +1,56 @@
-import React, { useEffect } from 'react';
-import './App.scss';
-import {  BrowserRouter as Router, 
-  Route, 
-  RouteComponentProps, 
-  Switch 
-} from "react-router-dom";
-import Navbar from './components/navbar/Navbar';
-import Home from './pages/home/Home';
-import Dashboard from './pages/dashboard/Dashboard';
-import Login from './pages/login/Login';
-import List from './pages/adminLists/List';
-import SignUp from './pages/signUp/SignUp';
-import logging from './config/logging';
-import routes from './config/routes';
-import PrivateRoute from './config/PrivateRoute';
-import Demo from './pages/demo/demo';
-import ListFullPage from './pages/listFullPage/ListFullPage'
+import React, { useEffect } from "react";
+import "./App.scss";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Navbar from "./components/navbar/Navbar";
+import Home from "./pages/home/Home";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Login from "./pages/login/Login";
+import List from "./pages/adminLists/List";
+import SignUp from "./pages/signUp/SignUp";
+import logging from "./config/logging";
+import PrivateRoute from "./config/PrivateRoute";
+import Demo from "./pages/demo/demo";
+import ListFullPage from "./pages/listFullPage/ListFullPage";
 
 function App() {
-
   useEffect(() => {
-    logging.info('Loading application.')
+    logging.info("Loading application.");
   }, []);
 
   const isAuthenticated = false;
 
   return (
     <Router>
-      <Navbar  />
+      <Navbar />
 
       <Switch>
-        <Route path='/' exact > <Home /> </Route>
+        <Route path="/" exact>
+          {" "}
+          <Home />{" "}
+        </Route>
         {/* <Route path='/dashboard' exact > <Dashboard /> </Route> */}
-        <Route path='/login' exact > <Login /> </Route>
-        <Route path='/lists' exact ><List  /></Route>
-        <Route path='/signUp' exact ><SignUp  /></Route> 
-        <Route path='/demo' exact ><Demo  /></Route> 
-        <Route path='/page-detail' exact ><ListFullPage  /></Route> 
+        <Route path="/login" exact>
+          {" "}
+          <Login />{" "}
+        </Route>
+        <Route path="/lists" exact>
+          <List />
+        </Route>
+        <Route path="/signUp" exact>
+          <SignUp />
+        </Route>
+        <Route path="/demo" exact>
+          <Demo />
+        </Route>
+        <Route path="/page-detail" exact>
+          <ListFullPage />
+        </Route>
 
-
-        <PrivateRoute  
+        <PrivateRoute
           path="/dashboard"
           isAuthenticated={isAuthenticated}
-          component={Dashboard} 
+          component={Dashboard}
         />
-
-
       </Switch>
     </Router>
   );

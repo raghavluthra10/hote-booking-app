@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 import ListBox from "../../components/listBox/ListBox";
@@ -6,15 +6,10 @@ import ButtonComp from "../../components/button/ButtonComp";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ModalOne from "../../components/newListModel/ModalOne";
-
-const arr: { id: number; name: string; bhk: number; price: number }[] = [
-  { id: 1, name: "Raghav", bhk: 111, price: 111 },
-  { id: 2, name: "Muskaan", bhk: 111, price: 111 },
-  { id: 3, name: "Allu", bhk: 111, price: 111 },
-];
+import { RootState } from "../../store";
 
 const List: FC<{}> = () => {
-  const { list } = useSelector((state: any) => state.hotels);
+  const { list } = useSelector((state: RootState) => state.hotels);
 
   const history = useHistory();
 
