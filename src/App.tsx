@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import "./App.scss";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
@@ -12,7 +12,7 @@ import PrivateRoute from "./config/PrivateRoute";
 import Demo from "./pages/demo/demo";
 import ListFullPage from "./pages/listFullPage/ListFullPage";
 
-function App() {
+const App: FC = () => {
   useEffect(() => {
     logging.info("Loading application.");
   }, []);
@@ -54,6 +54,6 @@ function App() {
       </Switch>
     </Router>
   );
-}
+};
 
 export default App;
