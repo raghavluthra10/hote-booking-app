@@ -1,64 +1,70 @@
-import React, { FC, useEffect, useState } from 'react';
-import { createStyles, withStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { grey, red } from '@material-ui/core/colors';
-import Button from '@material-ui/core/Button';
-
+import React, { FC } from "react";
+import {
+  // createStyles,
+  withStyles,
+  // makeStyles,
+  Theme,
+} from "@material-ui/core/styles";
+import { grey, red } from "@material-ui/core/colors";
+import Button from "@material-ui/core/Button";
 
 interface Props {
   children: string;
-  variant?: any;
-  color?: any;
-  width?: any;
-  // type?: any;
-  onClick: (e: any) => any;
+  color?: string;
+  width?: string;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => any;
 }
 
-const ButtonComp:FC<Props> = ({ children, onClick, color, width }) => {
+const ButtonComp: FC<Props> = ({ children, onClick, color, width }) => {
+  // const [buttonColor, setButtonColor] = useState<any>(grey);
+  // const [buttonWidth, setButtonWidth] = useState<any>("");
 
+  // useEffect(() => {
+  //   if (color === "red") {
+  //     setButtonColor(red);
+  //   }
 
-  const [ buttonColor, setButtonColor ] = useState<any>(grey);
-  const [ buttonWidth, setButtonWidth ] = useState<any>('');
-  // const [ buttonType, setButtonType ] = useState<any>('button')
-  
-  useEffect(() => {
-    if (color === 'red') {
-      setButtonColor(red);
-    }
+  //   if (width !== "") {
+  //     setButtonWidth(width);
+  //   }
+  // }, []);
 
-    if(width !== '') {
-      setButtonWidth(width);
-    }
-
-    // if(type !== 'upload') {
-    //   setButtonType(type);
-    // }
-
-  }, []);
-
-
-  const ColorButton = withStyles((theme: Theme) => ({
+  const RedButton = withStyles((theme: Theme) => ({
     root: {
-      color: theme.palette.getContrastText(buttonColor[900]),
-      backgroundColor: buttonColor[900],
-      '&:hover': {
-        backgroundColor: buttonColor[800],
+      color: theme.palette.getContrastText(red[900]),
+      width: width,
+      backgroundColor: red[900],
+      "&:hover": {
+        backgroundColor: red[800],
       },
     },
   }))(Button);
 
+  const GreyButton = withStyles((theme: Theme) => ({
+    root: {
+      color: theme.palette.getContrastText(grey[900]),
+      width: width,
+      backgroundColor: grey[900],
+      "&:hover": {
+        backgroundColor: grey[800],
+      },
+    },
+  }))(Button);
 
-  const buttonVariantOptions = ['outlined', 'contained']
-
-    return (
-        <>
-            <ColorButton 
-              style={{ width: buttonWidth }}
-              onClick={onClick}
-              >
-              {children}
-            </ColorButton>  
-        </>
-    );
+  return (
+    <>
+      {color === "red" ? (
+        <RedButton
+          // style={{ width: buttonWidth }}
+          onClick={onClick}
+        >
+          {children}
+        </RedButton>
+      ) : (
+        <GreyButton onClick={onClick}>{children}</GreyButton>
+      )}
+    </>
+  );
 };
 
 export default ButtonComp;
